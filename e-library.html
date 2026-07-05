@@ -1,0 +1,293 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="UTF-8" /> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+<title>WonderKids E-Library</title> 
+<style> 
+body { 
+margin: 0; 
+     font-family: 'Poppins', sans-serif; 
+     background: linear-gradient(135deg, #667eea, #764ba2); 
+     color: #333; 
+   } 
+ 
+   .container { 
+     max-width: 1100px; 
+     margin: auto; 
+     padding: 20px; 
+   } 
+ 
+   h1 { text-align: center; color: white; font-size: 2.5rem; } 
+   h2 { text-align: center; } 
+ 
+   .card { 
+     background: white; 
+     border-radius: 15px; 
+     padding: 20px; 
+     margin: 15px 0; 
+     box-shadow: 0 8px 20px rgba(0,0,0,0.2); 
+   } 
+ 
+   input { 
+     width: 100%; 
+     padding: 10px; 
+     margin: 10px 0; 
+     border-radius: 8px; 
+     border: 1px solid #ccc; 
+   } 
+ 
+   button { 
+     width: 100%; 
+     padding: 12px; 
+     border: none; 
+     border-radius: 10px; 
+     background: #667eea; 
+     color: white; 
+     font-size: 16px; 
+     cursor: pointer; 
+   } 
+   button:hover { background: #5a67d8; } 
+ 
+   .hidden { display: none; } 
+ 
+   .grid { 
+     display: grid; 
+     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+     gap: 20px; 
+     margin-top: 20px; 
+   } 
+ 
+   .section { 
+     background: white; 
+     border-radius: 15px; 
+     overflow: hidden; 
+     cursor: pointer; 
+     transition: 0.3s; 
+     box-shadow: 0 5px 15px rgba(0,0,0,0.2); 
+   } 
+   .section:hover { transform: scale(1.05); } 
+ 
+   .section img { width: 100%; height: 150px; object-fit: cover; } 
+   .section-title { padding: 10px; font-weight: bold; text-align: center; 
+background: #f7fafc; } 
+ 
+   .books { display: none; padding: 10px; } 
+ 
+   .book { background: #edf2f7; border-radius: 10px; margin-bottom: 10px; padding: 
+10px; } 
+   .book img { width: 100%; border-radius: 8px; } 
+   .book p { font-size: 14px; margin-top: 5px; } 
+ 
+   .logout { margin-top: 20px; background: crimson; } 
+ </style> 
+</head> 
+<body> 
+ 
+<div class="container"> 
+ <h1>
+📚
+ WonderKids E-Library</h1> 
+ 
+ <div id="signup" class="card"> 
+   <h2>Create Account</h2> 
+   <input id="name" placeholder="Full Name"> 
+   <input id="email" placeholder="Email"> 
+   <input id="password" type="password" placeholder="Password"> 
+   <button onclick="signup()">Sign Up</button> 
+   <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p> 
+ </div> 
+ 
+ <div id="login" class="card hidden"> 
+   <h2>Login</h2> 
+   <input id="loginEmail" placeholder="Email"> 
+   <input id="loginPassword" type="password" placeholder="Password"> 
+   <button onclick="loginUser()">Login</button> 
+   <p>No account? <a href="#" onclick="showSignup()">Sign Up</a></p> 
+ </div> 
+ 
+ <div id="library" class="hidden"> 
+   <h2 style="color:white;">Explore Your Books 
+�
+�
+</h2> 
+ 
+   <div class="grid"> 
+ 
+     <div class="section" onclick="toggleBooks(this)"> 
+       <img src="https://picsum.photos/400/200?random=1"> 
+       <div class="section-title">Basic 1</div> 
+       <div class="books"> 
+         <div class="book"> 
+           <img src="https://picsum.photos/200/120?random=11"> 
+           <p><b>Alphabet Adventures:</b> Join fun characters as they explore 
+letters A-Z with colorful stories and playful learning.</p> 
+         </div> 
+       </div> 
+     </div> 
+ 
+     <div class="section" onclick="toggleBooks(this)"> 
+       <img src="https://picsum.photos/400/200?random=2"> 
+       <div class="section-title">Basic 2</div> 
+       <div class="books"> 
+         <div class="book"> 
+           <img src="https://picsum.photos/200/120?random=12"> 
+           <p><b>Learning Shapes:</b> Discover circles, squares, and triangles 
+through exciting real-life examples.</p> 
+         </div> 
+       </div> 
+     </div> 
+ 
+     <div class="section" onclick="toggleBooks(this)"> 
+       <img src="https://picsum.photos/400/200?random=3"> 
+       <div class="section-title">Basic 3</div> 
+       <div class="books"> 
+         <div class="book"> 
+           <img src="https://picsum.photos/200/120?random=13"> 
+           <p><b>Reading Fun:</b> Build reading confidence with short, engaging 
+stories full of imagination.</p> 
+         </div> 
+       </div> 
+     </div> 
+ 
+     <div class="section" onclick="toggleBooks(this)"> 
+       <img src="https://picsum.photos/400/200?random=4"> 
+       <div class="section-title">Basic 4</div> 
+       <div class="books"> 
+         <div class="book"> 
+           <img src="https://picsum.photos/200/120?random=14"> 
+           <p><b>Science for Kids:</b> Explore simple science concepts with fun 
+experiments and easy explanations.</p> 
+         </div> 
+       </div> 
+     </div> 
+ 
+     <div class="section" onclick="toggleBooks(this)"> 
+       <img src="https://picsum.photos/400/200?random=5"> 
+       <div class="section-title">Basic 5</div> 
+       <div class="books"> 
+         <div class="book"> 
+           <img src="https://picsum.photos/200/120?random=15"> 
+           <p><b>History Tales:</b> Travel through time and learn about heroes, 
+cultures, and amazing stories.</p> 
+         </div> 
+       </div> 
+     </div> 
+ 
+     <div class="section" onclick="toggleBooks(this)"> 
+       <img src="https://picsum.photos/400/200?random=6"> 
+       <div class="section-title">Basic 6</div> 
+       <div class="books"> 
+         <div class="book"> 
+           <img src="https://picsum.photos/200/120?random=16"> 
+           <p><b>Geography World:</b> Discover countries, maps, and nature around 
+the globe.</p> 
+         </div> 
+       </div> 
+     </div> 
+ 
+     <div class="section" onclick="toggleBooks(this)"> 
+       <img src="https://picsum.photos/400/200?random=7"> 
+       <div class="section-title">Basic 7</div> 
+       <div class="books"> 
+         <div class="book"> 
+           <img src="https://picsum.photos/200/120?random=17"> 
+           <p><b>Science Experiments:</b> Hands-on experiments to make learning 
+exciting and interactive.</p> 
+         </div> 
+       </div> 
+     </div> 
+ 
+     <div class="section" onclick="toggleBooks(this)"> 
+       <img src="https://picsum.photos/400/200?random=8"> 
+       <div class="section-title">Basic 8</div> 
+       <div class="books"> 
+         <div class="book"> 
+           <img src="https://picsum.photos/200/120?random=18"> 
+           <p><b>Exam Prep:</b> Practice questions and tips to help students 
+succeed confidently.</p> 
+         </div> 
+       </div> 
+     </div> 
+ 
+   </div> 
+ 
+   <button class="logout" onclick="logout()">Logout</button> 
+ </div> 
+</div> 
+ 
+<script> 
+const signupDiv = document.getElementById('signup'); 
+const loginDiv = document.getElementById('login'); 
+const libraryDiv = document.getElementById('library'); 
+ 
+function showLogin(){ 
+ signupDiv.classList.add('hidden'); 
+ loginDiv.classList.remove('hidden'); 
+} 
+function showSignup(){ 
+ loginDiv.classList.add('hidden'); 
+ signupDiv.classList.remove('hidden'); 
+} 
+ 
+function signup(){ 
+ const user={ 
+   name:document.getElementById('name').value.trim(), 
+   email:document.getElementById('email').value.trim(), 
+   password:document.getElementById('password').value.trim() 
+ }; 
+ 
+ if(!user.name || !user.email || !user.password){ 
+   alert('Please fill all fields'); 
+   return; 
+ } 
+ 
+ localStorage.setItem('user',JSON.stringify(user)); 
+ alert('Signup successful. You can now login.'); 
+ showLogin(); 
+} 
+ 
+function loginUser(){ 
+ const email = document.getElementById('loginEmail').value.trim(); 
+ const password = document.getElementById('loginPassword').value.trim(); 
+ 
+ const user = JSON.parse(localStorage.getItem('user')); 
+ 
+ if(!user){ 
+   alert('No user found. Please sign up first.'); 
+   return; 
+ } 
+ 
+ if(user.email === email && user.password === password){ 
+   signupDiv.classList.add('hidden'); 
+   loginDiv.classList.add('hidden'); 
+   libraryDiv.classList.remove('hidden'); 
+ } else { 
+   alert('Invalid email or password'); 
+ } 
+} 
+ 
+function logout(){ 
+ libraryDiv.classList.add('hidden'); 
+ showLogin(); 
+} 
+ 
+function toggleBooks(el){ 
+ const b=el.querySelector('.books'); 
+ b.style.display=b.style.display==='block'?'none':'block'; 
+} 
+ 
+// keep user logged in on refresh 
+window.onload = function(){ 
+ const user = JSON.parse(localStorage.getItem('user')); 
+ if(user){ 
+   showLogin(); 
+ } 
+} 
+</script> 
+ 
+</body> 
+</html>
+ 
+
+
